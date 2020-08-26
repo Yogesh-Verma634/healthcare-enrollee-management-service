@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
 public class Enrollee {
 
     @Id
-    @Column(name = "id")
+    @Column(name = "enrollee_id")
     public Integer id;
 
     @Column(name = "name")
