@@ -13,7 +13,9 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Builder
 public class Dependent {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public Integer id;
 

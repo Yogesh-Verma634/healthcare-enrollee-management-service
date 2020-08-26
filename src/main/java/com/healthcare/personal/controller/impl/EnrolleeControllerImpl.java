@@ -2,6 +2,7 @@ package com.healthcare.personal.controller.impl;
 
 import com.healthcare.personal.controller.EnrolleeController;
 import com.healthcare.personal.model.Enrollee;
+import com.healthcare.personal.repository.DependentRepository;
 import com.healthcare.personal.repository.EnrolleeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +20,9 @@ public class EnrolleeControllerImpl implements EnrolleeController {
 
     @Autowired
     EnrolleeRepository enrolleeRepository;
+
+    @Autowired
+    DependentRepository dependentRepository;
 
     @Override
     public ResponseEntity<Enrollee> getEnrolleeDetails(Integer enrolleeId) throws HttpClientErrorException.BadRequest {
@@ -58,6 +62,8 @@ public class EnrolleeControllerImpl implements EnrolleeController {
         Optional<Enrollee> enrollee = enrolleeRepository.findById(enrolleeId);
 
         if(enrollee.isPresent()){
+            dependentRepository.deleteByEnrollee(enrolleeId);
+            logger.info("Deleted dependents for the enrollee");
             enrolleeRepository.deleteById(enrolleeId);
             return ResponseEntity.ok("Successfully deleted enrollee record");
         }
