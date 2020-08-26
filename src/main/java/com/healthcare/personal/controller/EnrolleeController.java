@@ -13,13 +13,13 @@ import org.springframework.web.client.HttpClientErrorException;
 @Api(produces = "application/json", tags = {"Enrollee Controller"})
 public interface EnrolleeController {
 
-    @GetMapping("/")
+    @GetMapping("/{enrollee_id}")
     @ApiOperation(value = "Retrieve enrollee information")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successfully retrieved  enrollee information", response = Enrollee.class)
     }
     )
-    ResponseEntity<Enrollee> getEnrolleeDetails() throws HttpClientErrorException.BadRequest;
+    ResponseEntity<Enrollee> getEnrolleeDetails(@PathVariable Integer enrolleeId) throws HttpClientErrorException.BadRequest;
 
     @PostMapping("/")
     @ApiOperation(value = "Create enrollee record")

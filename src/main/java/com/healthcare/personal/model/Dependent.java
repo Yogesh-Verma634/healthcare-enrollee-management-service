@@ -25,5 +25,5 @@ public class Dependent {
 
     @ManyToOne
     @JoinColumn(name = "dependent_enrollee_id")
-    public Enrollee dependentEnrolleeId;
+    public Enrollee enrollee;
 }

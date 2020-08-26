@@ -17,18 +17,26 @@ public class EnrolleeControllerImpl implements EnrolleeController {
     EnrolleeRepository enrolleeRepository;
 
     @Override
-    public ResponseEntity<Enrollee> getEnrolleeDetails() throws HttpClientErrorException.BadRequest {
-        return null;
+    public ResponseEntity<Enrollee> getEnrolleeDetails(Integer enrolleeId) throws HttpClientErrorException.BadRequest {
+        return enrolleeRepository.findById(enrolleeId).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @Override
     public ResponseEntity<String> create(Enrollee enrollee) throws HttpClientErrorException.BadRequest {
-        return null;
+        enrolleeRepository.save(enrollee);
+        return ResponseEntity.ok("Successfully saved the enrollee record");
     }
 
     @Override
     public ResponseEntity<String> update(Enrollee enrollee) throws HttpClientErrorException.BadRequest {
-        return null;
+        Optional<Enrollee> enrolleeOptional = enrolleeRepository.findById(enrollee.id);
+
+        if(enrolleeOptional.isPresent()){
+            enrolleeRepository.save(enrollee);
+            return ResponseEntity.ok("Successfully updated the enrollee record");
+        }
+
+        return ResponseEntity.notFound().build();
     }
 
     @Override
