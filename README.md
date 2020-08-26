@@ -1,12 +1,8 @@
 # healthcare-enrollee-management-service
 
 
-## # Hi there! 🐱‍🏍
-   
-   We're excited for you to be taking our coding challenge! 
-   
-   # The challenge
-   
+## # API/Service functionality🐱‍🏍
+
    Using Spring Boot or Go, and your database of choice (PostgreSQL, MySQL, MongoDB -- any you'd like), develop a microservice for tracking the status of enrollees in a health care program.
    - Enrollees must have an id, name, and activation status (true or false), and a birth date
    - Enrollees may have a phone number (although they do not have to supply this)
@@ -21,5 +17,12 @@
    - Remove dependents from an enrollee
    - Modify existing dependents
    
-   
-   👉 _Treat this code as if it were being deployed in production to be maintained by a team of developers._ 
+ ## Getting started
+   - Start a postgres server with database name: Centene
+   - Run the HealthcareEnrolleeManagementServiceApplication to start the service
+   - Go to localhost:8080/swagger-ui.html to find information about the exposed endpoints and defined models
+
+ ## API information
+ 
+   - /enrollee -> Get, Post, Put and Delete mappings enrollees
+   - /dependent -> Get, Post, Put and Delete mappings for dependents
